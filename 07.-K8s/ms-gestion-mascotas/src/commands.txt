@@ -1,0 +1,31 @@
+
+
+mvnw package
+
+mvnw package -DskipTests=true
+
+docker network connect kong-net mysql-CURS-000274-ARQMSQuarkus
+docker network disconnect kong-net mysql-CURS-000274-ARQMSQuarkus
+
+docker network connect bridge consul-quarkuCURS-000274-ARQMSQuarkus
+docker network disconnect bridge consul-quarkuCURS-000274-ARQMSQuarkus
+
+docker build -f src/main/docker/Dockerfile.jvm -t anovoa1975/ms-gestion-mascotas .
+
+docker run --name ms-gestion-mascotas ^
+-e "DB_SERVICE=mysql-CURS-000274-ARQMSQuarkus" ^
+-e "CONSUL_HOST=consul-quarkuCURS-000274-ARQMSQuarkus" ^
+-p 8081:8081 ^
+--network kong-net ^
+-d  anovoa1975/ms-gestion-mascotas
+
+docker run --name ms-gestion-mascotas-v2 ^
+-e "DB_SERVICE=mysql-CURS-000274-ARQMSQuarkus" ^
+-e "CONSUL_HOST=consul-quarkuCURS-000274-ARQMSQuarkus" ^
+-p 8087:8081 ^
+--network kong-net ^
+-d  anovoa1975/ms-gestion-mascotas
+
+docker run --name ms-gestion-mascotas-v2 -p 8081:8081 --network kong-net -d anovoa1975/ms-gestion-mascotas
+
+docker run --name ms-gestion-mascotas-v2 -p 8081:8081 --network kong-net -d alumno/ms-gestion-mascotas:1.0.0-SNAPSHOT

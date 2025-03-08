@@ -1,0 +1,13 @@
+docker network connect kong-net MySQL
+docker network connect kong-net consul-proyecto-quarkus
+
+docker build -f src/main/docker/Dockerfile.jvm -t jujoplua/ms-usuarios .
+docker run --name ms-usuarios-1 -e DB_SERVICE=Mysql -e DB_PORT=3306 -e CONSUL_HOST=consul-proyecto-quarkus -e QUARKUS_HTTP_PORT=8201 -p 8201:8201 --network kong-net -d jujoplua/ms-usuarios
+docker run --name ms-usuarios-2 -e DB_SERVICE=Mysql -e DB_PORT=3306 -e CONSUL_HOST=consul-proyecto-quarkus -e QUARKUS_HTTP_PORT=8211 -p 8211:8211 --network kong-net -d jujoplua/ms-usuarios
+
+docker build -f src/main/docker/Dockerfile.jvm -t jujoplua/ms-libros .
+docker run --name ms-libros-1 -e DB_SERVICE=Mysql -e DB_PORT=3306 -e CONSUL_HOST=consul-proyecto-quarkus -e QUARKUS_HTTP_PORT=8202 -p 8202:8202 --network kong-net -d jujoplua/ms-libros
+docker run --name ms-libros-2 -e DB_SERVICE=Mysql -e DB_PORT=3306 -e CONSUL_HOST=consul-proyecto-quarkus -e QUARKUS_HTTP_PORT=8212 -p 8212:8212 --network kong-net -d jujoplua/ms-libros
+
+docker build -f src/main/docker/Dockerfile.jvm -t jujoplua/ms-prestamos .
+docker run --name ms-prestamos-1 -e DB_SERVICE=Mysql -e DB_PORT=3306 -e CONSUL_HOST=consul-proyecto-quarkus -e QUARKUS_HTTP_PORT=8203 -p 8203:8203 --network kong-net -d jujoplua/ms-prestamos

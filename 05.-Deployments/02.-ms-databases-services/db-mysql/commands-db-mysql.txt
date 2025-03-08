@@ -1,0 +1,13 @@
+kubectl create -f mysql-deployment.yaml
+
+kubectl create -f mysql-service.yaml
+
+kubectl delete deployment.apps/db-mysql-deployment service/db-mysql-service
+
+kubectl get secrets,deployment,services,pods
+
+
+
+kubectl exec -it db-mysql-deployment-68c685c7b4-d2v28  -- sh
+
+mysql -uroot -p123456

@@ -1,0 +1,7 @@
+# Consult Key/Value Configuration
+quarkus.datasource.db-kind=mysql
+quarkus.datasource.password=${DB_PASSWORD:123456}
+quarkus.datasource.username=${DB_USERNAME:root}
+quarkus.datasource.jdbc.max-size=16
+quarkus.datasource.jdbc.url=jdbc:mysql://${DB_SERVICE:localhost}:${DB_PORT:3306}/${DB_NAME:ms-mascotas}?createDatabaseIfNotExist=true
+quarkus.hibernate-orm.sql-load-script=import.sql

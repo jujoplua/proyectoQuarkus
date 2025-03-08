@@ -1,0 +1,7 @@
+mvnw clean install
+
+mvnw install -Dquarkus.container-image.build=true
+
+mvnw install -Dquarkus.container-image.push=true
+
+docker image tag anovoa1975/ms-gestion-mascotas:1.0.0 anovoa1975/ms-gestion-mascotas:1.0.0

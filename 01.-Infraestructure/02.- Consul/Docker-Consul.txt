@@ -1,0 +1,1 @@
+docker run --name consul-proyecto-quarkus -p 8500:8500 consul:1.15.4

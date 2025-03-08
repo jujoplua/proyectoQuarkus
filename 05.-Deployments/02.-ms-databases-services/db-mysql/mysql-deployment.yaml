@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-mysql-deployment
+  labels:
+    app: srv-db-mysql
+spec:
+  selector:
+    matchLabels:
+      name: db-mysql
+      app: srv-db-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: srv-db-mysql
+      labels:
+        name: db-mysql
+        app: srv-db-mysql
+    spec:
+      containers:
+      - image: mysql:latest
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD 
+          valueFrom:
+            secretKeyRef:
+              name: db-mysql-secret
+              key: password
+#        - name: MYSQL_DATABASE
+#          valueFrom:
+#            secretKeyRef:
+#              name: mysql-db-url
+#              key: database
+#        - name: MYSQL_USER
+#          valueFrom:
+#            secretKeyRef:
+#              name: mysql-user-credentials
+#              key: username
+#        - name: MYSQL_PASSWORD
+#          valueFrom:
+#            secretKeyRef:
+#              name: mysql-user-credentials
+#              key: password
+        ports:
+        - containerPort: 3306   
+          name: mysql
+        # volumeMounts:
+        # - name: mysql-persistent-storage
+        #   mountPath: /var/lib/mysql
+        # volumes:
+        # - name: mysql-persistent-storage
+        # persistentVolumeClaim:
+        #   claimName: mysql-pv-claim

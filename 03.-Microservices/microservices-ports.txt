@@ -1,0 +1,18 @@
+
+MS - NEGOCIO
+-------------------------------------------------
+ms-gestion-mascotas-v1      		8081 (ok) 
+ms-negocio-gestion-clientes       	8082 (ok)
+ms-negocio-gestion-vendedor       	8083 (?)
+ms-negocio-gestion-pedidos        	8084 (ok)
+ms-negocio-gestion-clientes_backup 	808X (??)
+ms-integracion-message-mail			8085 (ok)
+
+
+MS – ADMINISTRACION(INFRAESTRUCTURA)
+----------------------------------------------------
+
+ms-administracion-server-config      8888 (ok)
+ms-administracion-server-registry    8889 (ok)
+ms-administracion-server-admin       8890 (ok)
+ms-administracion-api-gateway        8887 (ok)
